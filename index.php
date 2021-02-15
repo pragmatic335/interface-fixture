@@ -1,11 +1,20 @@
 <?php
 
+interface Univ{
+    public function z();
+}
 
-class Base
+
+class Base implements Univ
 {
-    public function a(): void
+    public function a()
     {
-        echo 'hello, i am a'. PHP_EOL;
+        return 'Hi, i am function a ' . PHP_EOL;
+    }
+
+    public function z()
+    {
+        return 'HELLO all, i am function z ' . PHP_EOL;
     }
 
 }
@@ -14,16 +23,17 @@ class Child extends Base
 {
     public function b()
     {
-        echo 'hello, i am b ' . PHP_EOL;
+        return 'hello, i am b ' . PHP_EOL;
     }
 
-    static function test(Base $example): void
+    static function test(Univ $example)
     {
-        $example->b();
+        return $example->z();
     }
 }
 
-Child::test( new Child() );
+
+echo Child::test(new Child());
 
 
 
